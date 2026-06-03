@@ -1,0 +1,557 @@
+/* ============================================================
+   Green Haven — Quote Page Styles (quote.css)
+   ============================================================ */
+
+/* ---------- Page Hero (compact) ---------- */
+.qp-hero {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+  padding: 60px 0 50px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.qp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 70%, rgba(58,158,47,.18) 0%, transparent 55%);
+}
+.qp-hero__inner { position: relative; z-index: 1; }
+.qp-hero h1 { color: var(--white); margin-bottom: 12px; }
+.qp-hero p  { color: rgba(255,255,255,.72); max-width: 520px; margin: 0 auto; font-size: 1rem; }
+
+/* ---------- Section wrapper ---------- */
+.qp-section { background: var(--gray); padding: 52px 0 80px; }
+
+/* ---------- Progress Indicator ---------- */
+.qp-progress {
+  max-width: 780px;
+  margin: 0 auto 36px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px 32px 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.qp-progress__bar-wrap {
+  height: 6px;
+  background: var(--border);
+  border-radius: 6px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+.qp-progress__bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), #6ac95c);
+  border-radius: 6px;
+  width: 16.67%;
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+}
+
+.qp-progress__steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.qp-progress__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  cursor: default;
+}
+
+.qp-progress__dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition: all .3s ease;
+}
+
+.qp-progress__step span {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  transition: color .3s ease;
+  text-align: center;
+}
+
+.qp-progress__step.active .qp-progress__dot {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(58,158,47,.18);
+}
+.qp-progress__step.active span { color: var(--green); }
+
+.qp-progress__step.done .qp-progress__dot {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+.qp-progress__step.done span { color: var(--blue); }
+
+.qp-progress__label {
+  text-align: center;
+  margin-top: 14px;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* ---------- Form Card ---------- */
+.qp-card {
+  max-width: 780px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  padding: 44px 48px;
+  overflow: hidden;
+}
+
+/* ---------- Step Panels ---------- */
+.qp-step {
+  display: none;
+  animation: stepIn .38s cubic-bezier(.4,0,.2,1) both;
+}
+.qp-step.active { display: block; }
+
+@keyframes stepIn {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes stepOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-28px); }
+}
+.qp-step.leaving {
+  display: block;
+  animation: stepOut .25s cubic-bezier(.4,0,.2,1) both;
+}
+.qp-step.entering-back {
+  animation: stepInBack .38s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes stepInBack {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- Step Header ---------- */
+.qp-step__header {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1.5px solid var(--border);
+}
+.qp-step__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(58,158,47,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--green);
+}
+.qp-step__header h2 {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+.qp-step__header p {
+  font-size: .9rem;
+  margin: 0;
+}
+
+/* ---------- Grids ---------- */
+.qp-grid-1 { display: grid; grid-template-columns: 1fr; gap: 18px; }
+.qp-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.qp-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 18px; }
+
+/* ---------- Divider ---------- */
+.qp-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 18px;
+}
+.qp-divider::before,
+.qp-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.qp-divider span {
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ---------- Labels / hints ---------- */
+.qp-question-label {
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--navy);
+  margin-bottom: 14px;
+}
+.qp-hint {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.req  { color: var(--green); }
+.qp-optional { font-weight: 400; color: var(--text-muted); font-size: .82rem; }
+
+/* ---------- Counter Input ---------- */
+.qp-counters {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.qp-counter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1.5px solid var(--border);
+  transition: background var(--transition);
+}
+.qp-counter-item:last-child { border-bottom: none; }
+.qp-counter-item:hover { background: var(--gray); }
+
+.qp-counter-item__info { display: flex; flex-direction: column; gap: 3px; }
+.qp-counter-item__label {
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--navy);
+}
+.qp-counter-item__sub {
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+
+.counter-input {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.counter-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  transition: background var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+.counter-btn:hover {
+  background: var(--green);
+  color: var(--white);
+}
+.counter-btn:active { background: var(--green-dark); }
+
+.counter-input input[type="number"] {
+  width: 52px;
+  border: none;
+  border-left: 1.5px solid var(--border);
+  border-right: 1.5px solid var(--border);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  padding: 0;
+  height: 40px;
+  outline: none;
+  background: var(--white);
+  -moz-appearance: textfield;
+}
+.counter-input input[type="number"]::-webkit-outer-spin-button,
+.counter-input input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* ---------- Radio Cards ---------- */
+.qp-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.qp-radio-group--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.qp-radio-group--grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.radio-card { cursor: pointer; display: block; }
+.radio-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.radio-card__body {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+  background: var(--white);
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--navy);
+}
+.radio-card:hover .radio-card__body {
+  border-color: var(--green);
+  background: rgba(58,158,47,.04);
+}
+.radio-card input:checked + .radio-card__body {
+  border-color: var(--green);
+  background: rgba(58,158,47,.07);
+  box-shadow: 0 0 0 3px rgba(58,158,47,.12);
+  color: var(--green-dark);
+}
+
+.radio-card__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(27,63,110,.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--blue);
+  transition: background var(--transition), color var(--transition);
+}
+.radio-card input:checked + .radio-card__body .radio-card__icon {
+  background: var(--green);
+  color: var(--white);
+}
+
+.radio-card__title {
+  display: block;
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.radio-card__sub {
+  display: block;
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Small radio cards (inline) */
+.radio-card--sm .radio-card__body {
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-size: .875rem;
+  justify-content: center;
+  gap: 7px;
+}
+.radio-card--sm .radio-card__body svg { width: 15px; height: 15px; }
+
+/* ---------- Checkbox Cards ---------- */
+.qp-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.qp-checkbox-grid--sm {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.checkbox-card { cursor: pointer; display: block; }
+.checkbox-card input[type="checkbox"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.checkbox-card__body {
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  background: var(--white);
+  font-weight: 600;
+  font-size: .88rem;
+  color: var(--navy);
+  transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+  position: relative;
+  min-height: 90px;
+  justify-content: center;
+}
+.checkbox-card__body svg { color: var(--blue); transition: color var(--transition); }
+
+.checkbox-card:hover .checkbox-card__body {
+  border-color: var(--green);
+  background: rgba(58,158,47,.04);
+}
+.checkbox-card input:checked + .checkbox-card__body {
+  border-color: var(--green);
+  background: rgba(58,158,47,.07);
+  box-shadow: 0 0 0 3px rgba(58,158,47,.12);
+}
+.checkbox-card input:checked + .checkbox-card__body svg { color: var(--green); }
+
+.checkbox-card__check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: background var(--transition), color var(--transition);
+}
+.checkbox-card input:checked + .checkbox-card__body .checkbox-card__check {
+  background: var(--green);
+  color: var(--white);
+}
+
+/* ---------- Pet count section ---------- */
+.qp-pet-count {
+  margin-top: 24px;
+  animation: fadeSlideDown .3s ease both;
+}
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Navigation Buttons ---------- */
+.qp-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1.5px solid var(--border);
+}
+.qp-nav__spacer { flex: 1; }
+
+/* ---------- Validation Error ---------- */
+.qp-error {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(220,38,38,.07);
+  border: 1.5px solid rgba(220,38,38,.3);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  color: #b91c1c;
+  font-size: .88rem;
+  font-weight: 600;
+  margin-top: 14px;
+  animation: shakeX .4s ease both;
+}
+@keyframes shakeX {
+  0%,100% { transform: translateX(0); }
+  20%,60%  { transform: translateX(-6px); }
+  40%,80%  { transform: translateX(6px); }
+}
+
+/* ---------- Thank You State ---------- */
+.qp-thankyou {
+  max-width: 580px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+  padding: 56px 48px;
+  text-align: center;
+  animation: stepIn .5s ease both;
+}
+.qp-thankyou__icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(58,158,47,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: var(--green);
+}
+.qp-thankyou h2 { margin-bottom: 12px; }
+.qp-thankyou p  { font-size: .95rem; max-width: 420px; margin: 0 auto 0; }
+
+.qp-thankyou__details {
+  background: var(--gray);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-top: 28px;
+  text-align: left;
+  font-size: .88rem;
+}
+.qp-thankyou__details p { margin-bottom: 6px; color: var(--text-dark); }
+.qp-thankyou__details p:last-child { margin-bottom: 0; }
+.qp-thankyou__details strong { color: var(--navy); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .qp-card { padding: 28px 20px; }
+  .qp-progress { padding: 22px 18px 18px; }
+  .qp-grid-2,
+  .qp-grid-3 { grid-template-columns: 1fr; }
+  .qp-radio-group--grid { grid-template-columns: 1fr 1fr; }
+  .qp-checkbox-grid { grid-template-columns: 1fr 1fr; }
+  .qp-checkbox-grid--sm { grid-template-columns: 1fr 1fr 1fr; }
+  .qp-progress__step span { display: none; }
+  .qp-progress__dot { width: 28px; height: 28px; font-size: .78rem; }
+  .qp-thankyou { padding: 40px 24px; }
+}
+
+@media (max-width: 540px) {
+  .qp-step__header { flex-direction: column; gap: 12px; }
+  .qp-radio-group--grid { grid-template-columns: 1fr; }
+  .qp-radio-group--inline { flex-direction: column; }
+  .radio-card--sm .radio-card__body { border-radius: 12px; justify-content: flex-start; }
+  .qp-checkbox-grid,
+  .qp-checkbox-grid--sm { grid-template-columns: 1fr 1fr; }
+  .qp-nav { flex-wrap: wrap; }
+  .qp-nav .btn { flex: 1; justify-content: center; }
+  .qp-nav__spacer { display: none; }
+}
