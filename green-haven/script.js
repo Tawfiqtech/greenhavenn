@@ -136,19 +136,35 @@ function handleForm(formId, successId) {
     btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
     btn.style.opacity = '.75';
 
-    // Simulate network delay
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.innerHTML = originalText;
-      btn.style.opacity = '';
-      form.reset();
+    // Send to Netlify. FormData includes the hidden form-name + honeypot.
+    // URL-encoded body is required — Netlify does not accept JSON.
+    const body = new URLSearchParams(new FormData(form)).toString();
 
-      const success = document.getElementById(successId);
-      if (success) {
-        success.classList.add('show');
-        setTimeout(() => success.classList.remove('show'), 5000);
-      }
-    }, 1400);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Status ' + res.status);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.style.opacity = '';
+        form.reset();
+
+        const success = document.getElementById(successId);
+        if (success) {
+          success.classList.add('show');
+          setTimeout(() => success.classList.remove('show'), 5000);
+        }
+      })
+      .catch((err) => {
+        console.error('Form submission failed:', err);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        btn.style.opacity = '';
+        alert('Sorry — something went wrong sending your request. Please try again, or call us at (604) 375-9391.');
+      });
   });
 }
 
